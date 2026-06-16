@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  --color-app-bg: #07080c;
+  --color-app-panel: #0d0e13;
+  --color-app-panel-soft: #090c11;
+  --color-app-card: #161717;
+  --color-app-card-soft: #222222;
+  --color-app-line: #282828;
+  --color-app-line-soft: #1b1b1b;
+  --color-app-yellow: #fccd03;
+  --color-app-text: #efefef;
+  --color-app-muted: #a1a1a1;
+  --color-app-muted-light: #c1c1c1;
+  --color-app-green: #13ac49;
+  --color-app-green-2: #00a806;
+  --color-app-red: #e40000;
+  --color-app-blue: #0755ff;
+  --color-app-purple: #7925ff;
+  --font-sans: var(--font-tajawal), "Tajawal", sans-serif;
+}
+
+:root {
+  --app-bg: #07080c;
+  --app-panel: #0d0e13;
+  --app-panel-soft: #090c11;
+  --app-card: #161717;
+  --app-card-soft: #222222;
+  --app-line: #282828;
+  --app-line-soft: #1b1b1b;
+  --app-yellow: #fccd03;
+  --app-text: #efefef;
+  --app-muted: #a1a1a1;
+  --app-muted-light: #c1c1c1;
+  --app-green: #13ac49;
+  --app-red: #e40000;
+  --app-inner-shadow: inset 0 2px 4px rgba(158, 158, 158, 0.25), inset 4px 0 4px rgba(120, 120, 120, 0);
+  --app-gold-shadow: inset 4px 0 4px rgba(203, 181, 84, 0.2), inset 0 4px 4px rgba(203, 181, 84, 0.1);
+  --app-yellow-glow: rgba(252, 205, 3, 0.18);
+  --app-green-glow: rgba(19, 172, 73, 0.08);
+}
+
+.light {
+  color-scheme: light;
+  --app-bg: #f9fafb;
+  --app-panel: #ffffff;
+  --app-panel-soft: #f3f4f6;
+  --app-card: #ffffff;
+  --app-card-soft: #f3f4f6;
+  --app-line: #e5e7eb;
+  --app-line-soft: #d1d5db;
+  --app-yellow: #f59e0b;
+  --app-text: #111827;
+  --app-muted: #6b7280;
+  --app-muted-light: #9ca3af;
+  --app-green: #059669;
+  --app-red: #dc2626;
+  --app-inner-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02), inset 4px 0 4px rgba(0, 0, 0, 0.02);
+  --app-gold-shadow: inset 4px 0 4px rgba(245, 158, 11, 0.1), inset 0 4px 4px rgba(245, 158, 11, 0.05);
+  --app-yellow-glow: rgba(245, 158, 11, 0.15);
+  --app-green-glow: rgba(5, 150, 105, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--app-bg);
+  color: var(--app-text);
+  font-family: var(--font-tajawal), "Tajawal", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(252, 205, 3, 0.35);
+  color: #ffffff;
+}
+
+.dashboard-bg {
+  background:
+    radial-gradient(circle at 30% 24%, var(--app-yellow-glow), transparent 24%),
+    radial-gradient(circle at 76% 58%, var(--app-green-glow), transparent 22%),
+    var(--app-bg);
+}
+
+.panel-shell {
+  background: var(--app-panel);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--app-inner-shadow);
+}
+
+.card-shell {
+  background: var(--app-card);
+  border: 1px solid var(--app-line);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
+}
+
+.soft-card {
+  background: var(--app-card-soft);
+}
+
+.gold-active {
+  color: var(--app-yellow);
+  border-inline: 2px solid var(--app-yellow);
+  background: rgba(252, 205, 3, 0.05);
+  box-shadow: var(--app-gold-shadow);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(252, 205, 3, 0.35);
+  border-radius: 999px;
+}
+
+.grid-auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.table-row-grid {
+  grid-template-columns: var(--table-columns);
+}
+
+@media (max-width: 1024px) {
+  .app-layout-grid {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-layout-grid {
+    grid-template-columns: 72px 190px minmax(0, 1fr);
+  }
+}
