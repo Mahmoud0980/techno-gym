@@ -9,7 +9,7 @@ const railItems = [
 
 export default function IconRail() {
   return (
-    <aside className="panel-shell sticky top-4 hidden h-[calc(100vh-2rem)] flex-col items-center rounded-2xl px-2 py-4 lg:flex">
+    <aside className="panel-shell sticky top-4 hidden h-[calc(100vh-2rem)] flex-col items-center rounded-2xl px-2 py-4 md:flex">
       <div className="grid h-8 w-full place-items-center overflow-hidden rounded-md">
         <LogoMark />
       </div>

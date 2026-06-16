@@ -136,21 +136,37 @@ textarea {
 }
 
 .grid-auto-fit {
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+@media (min-width: 640px) {
+  .grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
 }
 
 .table-row-grid {
   grid-template-columns: var(--table-columns);
 }
 
-@media (max-width: 1024px) {
+/* Mobile: no sidebar, no rail */
+@media (max-width: 767px) {
+  .app-layout-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Tablet: rail only, sidebar hidden */
+@media (min-width: 768px) and (max-width: 1023px) {
   .app-layout-grid {
     grid-template-columns: 72px minmax(0, 1fr);
   }
 }
 
+/* Desktop: rail + sidebar + content */
 @media (min-width: 1024px) {
   .app-layout-grid {
     grid-template-columns: 72px 190px minmax(0, 1fr);
   }
 }
+

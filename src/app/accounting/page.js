@@ -52,7 +52,7 @@ export default function AccountingDashboardPage() {
         ))}
       </section>
 
-      <section className="grid gap-5 xl:grid-cols-[339px_295px_minmax(0,1fr)]" dir="ltr">
+      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-[339px_295px_minmax(0,1fr)]" dir="ltr">
         <SectionCard title="المدفوعات القادمة" action="عرض الكل" className="h-[206px]" contentClassName="space-y-3 px-5 pb-5" dir="rtl">
           {upcomingPayments.map((item, index) => <PaymentItem key={index} item={item} />)}
         </SectionCard>
@@ -66,13 +66,13 @@ export default function AccountingDashboardPage() {
         </SectionCard>
       </section>
 
-      <section className="grid gap-5 xl:grid-cols-[339px_minmax(0,1fr)]" dir="ltr">
+      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-[339px_minmax(0,1fr)]" dir="ltr">
         <SectionCard title="ملخص رواتب المدربين" subtitle="ديسمبر 2026" className="min-h-[282px]" dir="rtl">
           <div className="flex justify-center gap-5 px-5 pt-8" dir="ltr">
             {salarySummary.map((item) => (
               <div key={item.label} className="grid h-24 w-24 place-items-center rounded-lg bg-app-card-soft text-center">
                 <span className="text-sm text-[#b3b1b1]">{item.label}</span>
-                <strong className={`text-xl font-medium ${item.tone === "yellow" ? "text-app-yellow" : "text-white"}`}>{item.value}</strong>
+                <strong className={`text-xl font-medium ${item.tone === "yellow" ? "text-app-yellow" : "text-app-text"}`}>{item.value}</strong>
               </div>
             ))}
           </div>

@@ -24,7 +24,7 @@ function BranchSummaryCard({ title, helper }) {
               <TrendUpIcon className="size-4" />
               {item.label}
             </div>
-            <strong className="text-xs font-medium text-white">{item.value}</strong>
+            <strong className="text-xs font-medium text-app-text">{item.value}</strong>
           </div>
         ))}
       </div>
@@ -38,7 +38,7 @@ export default function ReportsPage() {
       <div className="space-y-6">
         <StatsGrid items={reportStats} />
 
-        <section className="grid gap-5 lg:grid-cols-2">
+        <section className="grid gap-5 sm:grid-cols-2">
           {branchStats.map((branch) => (
             <BranchSummaryCard key={branch.title} title={branch.title} helper={branch.helper} />
           ))}
