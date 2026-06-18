@@ -7,9 +7,13 @@ export default function AppShell({ children, sidebar }) {
       <div className="app-layout-grid mx-auto grid max-w-[1440px] gap-3">
         <IconRail />
         {sidebar}
-        <main className="min-w-0">
+        <main className="min-w-0 flex flex-col min-h-[calc(100vh-3rem)]">
           <Navbar />
-          <div className="mt-7">{children}</div>
+          <div className="mt-7 flex-1">{children}</div>
+          
+          <footer className="mt-10 py-4 text-center text-xs text-app-muted-light" dir="ltr">
+            &copy; {new Date().getFullYear()} <span className="text-app-orange font-medium">ISS Group</span>. All Rights Reserved.
+          </footer>
         </main>
       </div>
     </div>
