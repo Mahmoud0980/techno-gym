@@ -109,6 +109,31 @@ export const pageMeta = {
     title: "الذمم الدائنة",
     subtitle: "المبالغ المستحقة على النادي",
   },
+
+  "/accounting/cashbox/create": {
+    title: "الصندوق اليومي",
+    subtitle: "الصندوق اليومي > إضافة قيد",
+  },
+  "/accounting/cashbox/entry": {
+    title: "الصندوق اليومي",
+    subtitle: "الصندوق اليومي > إضافة قيد",
+  },
+  "/accounting/revenues/create": {
+    title: "إضافة إيراد جديد",
+    subtitle: "تسجيل وارد مالي جديد - إيراد تشغيلي أو غير تشغيلي",
+  },
+  "/accounting/expenses/create": {
+    title: "إضافة مصروف جديد",
+    subtitle: "تسجيل بند مصروف وتوثيق بيانات التحويل أو الدفع",
+  },
+  "/accounting/subscriptions/payments/create": {
+    title: "اشتراكات الأعضاء",
+    subtitle: "اشتراكات الأعضاء > إضافة دفعة",
+  },
+  "/accounting/salaries/trainers/create": {
+    title: "رواتب المدربين",
+    subtitle: "رواتب المدربين > إضافة كشف",
+  },
   "/reports": {
     title: "نظام التقارير",
     subtitle: "ملخص تقارير الأداء المالي والإداري للنادي",

@@ -23,21 +23,21 @@ export default function LoginForm() {
       </div>
 
       <div className="space-y-4">
-        <label className="block text-right text-sm text-app-muted-light">
+        <label className="block text-end text-sm text-app-muted-light">
           البريد الإلكتروني
           <input
             defaultValue="admin@technogym.local"
             type="email"
-            className="mt-2 h-12 w-full rounded-xl border border-app-line bg-app-card-soft px-4 text-right text-white outline-none transition focus:border-app-yellow"
+            className="mt-2 h-12 w-full rounded-xl border border-app-line bg-app-card-soft px-4 text-end text-white outline-none transition focus:border-app-yellow"
           />
         </label>
 
-        <label className="block text-right text-sm text-app-muted-light">
+        <label className="block text-end text-sm text-app-muted-light">
           كلمة المرور
           <input
             defaultValue="12345678"
             type="password"
-            className="mt-2 h-12 w-full rounded-xl border border-app-line bg-app-card-soft px-4 text-right text-white outline-none transition focus:border-app-yellow"
+            className="mt-2 h-12 w-full rounded-xl border border-app-line bg-app-card-soft px-4 text-end text-white outline-none transition focus:border-app-yellow"
           />
         </label>
       </div>

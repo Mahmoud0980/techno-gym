@@ -15,8 +15,10 @@ import {
 function PaymentItem({ item }) {
   return (
     <div className="flex h-12 items-center justify-between rounded-lg bg-app-card-soft px-3">
-      <div className="text-left text-sm font-medium text-app-yellow">{item.amount}</div>
-      <div className="text-right">
+      <div className="text-start text-sm font-medium text-app-yellow">
+        {item.amount}
+      </div>
+      <div className="text-end">
         <h4 className="text-sm font-medium text-app-text">{item.title}</h4>
         <p className="text-xs text-app-muted">{item.date}</p>
       </div>
@@ -28,15 +30,25 @@ function TransactionItem({ item }) {
   const isIn = item.type === "in";
   return (
     <div className="flex h-12 items-center gap-3 rounded-lg bg-app-card-soft px-3">
-      <div className={`grid size-9 place-items-center rounded-md ${isIn ? "bg-[rgba(21,207,133,0.20)] text-app-green" : "bg-[rgba(207,21,21,0.20)] text-app-red"}`}>
-        <ArrowUpIcon className={`size-5 ${isIn ? "rotate-[225deg]" : "rotate-45"}`} />
+      <div
+        className={`grid size-9 place-items-center rounded-md ${isIn ? "bg-[rgba(21,207,133,0.20)] text-app-green" : "bg-[rgba(207,21,21,0.20)] text-app-red"}`}
+      >
+        <ArrowUpIcon
+          className={`size-5 ${isIn ? "rotate-[225deg]" : "rotate-45"}`}
+        />
       </div>
-      <div className="min-w-0 flex-1 text-right">
-        <h4 className="truncate text-sm font-medium text-app-text">{item.title}</h4>
+      <div className="min-w-0 flex-1 text-end">
+        <h4 className="truncate text-sm font-medium text-app-text">
+          {item.title}
+        </h4>
         <p className="truncate text-xs text-app-muted">{item.description}</p>
       </div>
       <div className="text-center text-xs text-app-muted">
-        <strong className={`block text-sm font-medium ${isIn ? "text-app-green" : "text-app-red"}`}>{item.amount}</strong>
+        <strong
+          className={`block text-sm font-medium ${isIn ? "text-app-green" : "text-app-red"}`}
+        >
+          {item.amount}
+        </strong>
         {item.time}
       </div>
     </div>
@@ -52,27 +64,59 @@ export default function AccountingDashboardPage() {
         ))}
       </section>
 
-      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-[339px_295px_minmax(0,1fr)]" dir="ltr">
-        <SectionCard title="المدفوعات القادمة" action="عرض الكل" className="h-[206px]" contentClassName="space-y-3 px-5 pb-5" dir="rtl">
-          {upcomingPayments.map((item, index) => <PaymentItem key={index} item={item} />)}
-        </SectionCard>
-
-        <SectionCard title="الربح الشهري" className="h-[206px]" dir="rtl">
+      <section className="grid gap-5 xl:grid-cols-[339px_295px_minmax(0,1fr)]">
+        <SectionCard title="الربح الشهري" className="h-[206px]">
           <BarChart data={monthlyProfit} />
         </SectionCard>
 
-        <SectionCard title="الإيرادات مقابل المصاريف" action="آخر 7 أيام" className="h-[208px]" dir="rtl">
+        <SectionCard
+          title="الإيرادات مقابل المصاريف"
+          action="آخر 7 أيام"
+          className="h-[208px]"
+        >
           <LineChart data={comparisonChart} />
+        </SectionCard>
+        <SectionCard
+          title="المدفوعات القادمة"
+          action="عرض الكل"
+          className="h-[206px]"
+          contentClassName="space-y-3 px-5 pb-5"
+        >
+          {upcomingPayments.map((item, index) => (
+            <PaymentItem key={index} item={item} />
+          ))}
         </SectionCard>
       </section>
 
-      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-[339px_minmax(0,1fr)]" dir="ltr">
-        <SectionCard title="ملخص رواتب المدربين" subtitle="ديسمبر 2026" className="min-h-[282px]" dir="rtl">
+      <section className="grid gap-5 xl:grid-cols-[339px_minmax(0,1fr)]">
+        <SectionCard
+          title="آخر المعاملات"
+          subtitle="أحدث الحركات المالية"
+          action="عرض الكل"
+          className="min-h-[290px]"
+          contentClassName="space-y-4 px-6 pb-5"
+        >
+          {recentTransactions.map((item, index) => (
+            <TransactionItem key={index} item={item} />
+          ))}
+        </SectionCard>
+        <SectionCard
+          title="ملخص رواتب المدربين"
+          subtitle="ديسمبر 2026"
+          className="min-h-[282px]"
+        >
           <div className="flex justify-center gap-5 px-5 pt-8" dir="ltr">
             {salarySummary.map((item) => (
-              <div key={item.label} className="grid h-24 w-24 place-items-center rounded-lg bg-app-card-soft text-center">
+              <div
+                key={item.label}
+                className="grid h-24 w-24 place-items-center rounded-lg bg-app-card-soft text-center"
+              >
                 <span className="text-sm text-[#b3b1b1]">{item.label}</span>
-                <strong className={`text-xl font-medium ${item.tone === "yellow" ? "text-app-yellow" : "text-app-text"}`}>{item.value}</strong>
+                <strong
+                  className={`text-xl font-medium ${item.tone === "yellow" ? "text-app-yellow" : "text-white"}`}
+                >
+                  {item.value}
+                </strong>
               </div>
             ))}
           </div>
@@ -80,10 +124,6 @@ export default function AccountingDashboardPage() {
             <SealCheckIcon className="size-6 text-app-green" />
             تم احتساب الرواتب تلقائياً وفق نظام النسب
           </div>
-        </SectionCard>
-
-        <SectionCard title="آخر المعاملات" subtitle="أحدث الحركات المالية" action="عرض الكل" className="min-h-[290px]" contentClassName="space-y-4 px-6 pb-5" dir="rtl">
-          {recentTransactions.map((item, index) => <TransactionItem key={index} item={item} />)}
         </SectionCard>
       </section>
     </div>

@@ -1,27 +1,114 @@
-import { accountingMenu } from "@/data/mockData";
-import { LogoMark } from "@/components/icons/Icons";
-import Menu from "@/components/layout/Menu";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  ChevronLeft,
+  FileDownIcon,
+  FileUpIcon,
+  FolderPlusIcon,
+  HandCoinsIcon,
+  LogoMark,
+} from "@/components/icons/Icons";
+import Image from "next/image";
+
+const quickActions = [
+  {
+    label: "إضافة مصروف",
+    href: "/accounting/expenses/create",
+    icon: FileDownIcon,
+  },
+  {
+    label: "إضافة دفعة",
+    href: "/accounting/subscriptions/payments/create",
+    icon: HandCoinsIcon,
+  },
+  {
+    label: "إضافة إيراد",
+    href: "/accounting/revenues/create",
+    icon: FileUpIcon,
+  },
+  {
+    label: "إضافة قيد",
+    href: "/accounting/cashbox/create",
+    icon: FolderPlusIcon,
+  },
+];
+
+const navItems = [
+  { title: "لوحة التحكم", href: "/accounting" },
+  { title: "الصندوق", href: "/accounting/cashbox" },
+  { title: "الإيرادات", href: "/accounting/revenues" },
+  { title: "المصاريف", href: "/accounting/expenses" },
+  { title: "اشتراكات الأعضاء", href: "/accounting/subscriptions" },
+  { title: "رواتب المدربين", href: "/accounting/salaries/trainers" },
+  { title: "رواتب الموظفين", href: "/accounting/salaries/employees" },
+  { title: "الذمم المدينة", href: "/accounting/receivables" },
+  { title: "الذمم الدائنة", href: "/accounting/debts" },
+  { title: "إدارة الفروع", href: "/reports" },
+];
+
+function isActive(pathname, href) {
+  if (href === "/accounting") return pathname === href;
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
   return (
-    <aside className="panel-shell sticky top-4 hidden h-[calc(100vh-2rem)] overflow-hidden rounded-2xl lg:block">
-      <div className="flex items-start justify-between gap-4 px-5 pt-5">
-        <div className="text-right">
-          <h2 className="text-lg font-medium text-app-text">لوحة التحكم</h2>
-          <div className="mt-5 flex gap-3">
-            <span className="size-9 rounded-full border border-app-yellow/40 bg-[rgba(252,205,3,0.16)]" />
-            <span className="size-9 rounded-full border border-white/15 bg-white/10" />
-          </div>
-        </div>
-        <div className="rounded-lg bg-black/20 p-1">
-          <LogoMark />
-        </div>
+    <aside
+      className="app-panel sticky top-6 hidden h-[calc(100vh-3rem)] overflow-y-auto overflow-x-hidden sidebar-scrollbar rounded-2xl px-1 pt-4 pb-6 lg:block"
+      dir="ltr"
+    >
+      <div className="mx-auto grid h-[59px] w-[159px] place-items-center">
+        <Image src={"/img/logo.jpeg"} alt="Logo" width={159} height={59} />
       </div>
 
-      <div className="mt-10 px-1">
-        <p className="mb-7 px-5 text-right text-sm text-app-text">لوحة التحكم</p>
-        <Menu items={accountingMenu} />
+      <h3 className="mt-6 text-center text-base font-medium text-white">
+        إجراءات سريعة
+      </h3>
+      <div className="mt-5 grid grid-cols-4 gap-2 px-3">
+        {quickActions.map((action) => {
+          const Icon = action.icon;
+          const actionActive = pathname === action.href;
+          return (
+            <Link
+              key={action.label}
+              href={action.href}
+              className="group flex flex-col items-center gap-2 text-center text-[11px] leading-tight text-white"
+            >
+              <span
+                className={`grid size-[38px] place-items-center rounded-full transition ${actionActive ? "border border-app-yellow bg-app-yellow/10 text-app-yellow" : "bg-white/15 text-[#dadada] group-hover:bg-white/20"}`}
+              >
+                <Icon className="size-5" />
+              </span>
+              <span>{action.label}</span>
+            </Link>
+          );
+        })}
       </div>
+
+      <nav className="mx-auto mt-14 flex w-[250px] flex-col gap-2">
+        {navItems.map((item) => {
+          const active =
+            isActive(pathname, item.href) ||
+            (pathname.includes("/cashbox/") &&
+              item.href === "/accounting/cashbox");
+          return (
+            <Link
+              key={item.title}
+              href={item.href}
+              className={`flex h-11 items-center justify-between rounded-lg px-5 text-base transition ${active ? "border border-[#ffde4e] bg-[#1b1b1b] text-[#ffde4e] shadow-[1px_0_4px_rgba(198,161,2,0.25),inset_0_2px_3.7px_rgba(198,161,2,0.15)]" : "text-[#dadada] hover:bg-white/5 hover:text-white"}`}
+            >
+              <ChevronLeft
+                className={`size-5 ${active ? "text-app-yellow" : "text-[#dadada]"}`}
+              />
+              <span>{item.title}</span>
+            </Link>
+          );
+        })}
+      </nav>
     </aside>
   );
 }

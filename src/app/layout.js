@@ -8,8 +8,6 @@ const tajawal = Tajawal({
   display: "swap",
 });
 
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
-
 export const metadata = {
   title: "TechnoGYM Dashboard",
   description: "Gym accounting and reports dashboard",
@@ -17,28 +15,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('theme');
-                  if (theme === 'light') {
-                    document.documentElement.classList.add('light');
-                  } else {
-                    document.documentElement.classList.add('dark');
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-      </head>
-      <body className={`${tajawal.variable} antialiased`}>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+    <html lang="ar" dir="rtl">
+      <body className={`${tajawal.variable} antialiased`}>{children}</body>
     </html>
   );
 }
