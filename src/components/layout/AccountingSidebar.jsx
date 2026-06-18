@@ -53,7 +53,7 @@ function isActive(pathname, href) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export default function Sidebar() {
+export default function AccountingSidebar() {
   const pathname = usePathname();
 
   return (
@@ -65,7 +65,7 @@ export default function Sidebar() {
         <Image src={"/img/logo.jpeg"} alt="Logo" width={159} height={59} />
       </div>
 
-      <h3 className="mt-6 text-center text-base font-medium text-white">
+      <h3 className="mt-6 text-center text-base font-medium text-app-text">
         إجراءات سريعة
       </h3>
       <div className="mt-5 grid grid-cols-4 gap-2 px-3">
@@ -76,10 +76,10 @@ export default function Sidebar() {
             <Link
               key={action.label}
               href={action.href}
-              className="group flex flex-col items-center gap-2 text-center text-[11px] leading-tight text-white"
+              className="group flex flex-col items-center gap-2 text-center text-[11px] leading-tight text-app-text"
             >
               <span
-                className={`grid size-[38px] place-items-center rounded-full transition ${actionActive ? "border border-app-yellow bg-app-yellow/10 text-app-yellow" : "bg-white/15 text-[#dadada] group-hover:bg-white/20"}`}
+                className={`grid size-[38px] place-items-center rounded-full transition ${actionActive ? "border border-app-yellow bg-app-yellow-soft text-app-yellow" : "bg-app-card-soft text-app-muted-light group-hover:bg-app-line-soft group-hover:text-app-text"}`}
               >
                 <Icon className="size-5" />
               </span>
@@ -99,10 +99,10 @@ export default function Sidebar() {
             <Link
               key={item.title}
               href={item.href}
-              className={`flex h-11 items-center justify-between rounded-lg px-5 text-base transition ${active ? "border border-[#ffde4e] bg-[#1b1b1b] text-[#ffde4e] shadow-[1px_0_4px_rgba(198,161,2,0.25),inset_0_2px_3.7px_rgba(198,161,2,0.15)]" : "text-[#dadada] hover:bg-white/5 hover:text-white"}`}
+              className={`flex h-11 items-center justify-between rounded-lg px-5 text-base transition ${active ? "border border-app-yellow bg-app-card-hover text-app-yellow shadow-[1px_0_4px_rgba(198,161,2,0.1),inset_0_2px_3.7px_rgba(198,161,2,0.05)]" : "text-app-muted-light hover:bg-app-line-soft hover:text-app-text"}`}
             >
               <ChevronLeft
-                className={`size-5 ${active ? "text-app-yellow" : "text-[#dadada]"}`}
+                className={`size-5 ${active ? "text-app-yellow" : "text-app-muted-light"}`}
               />
               <span>{item.title}</span>
             </Link>

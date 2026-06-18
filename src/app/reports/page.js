@@ -1,4 +1,3 @@
-import AppShell from "@/components/layout/AppShell";
 import SectionCard from "@/components/ui/SectionCard";
 import StatsGrid from "@/components/ui/StatsGrid";
 import LineChart from "@/components/charts/LineChart";
@@ -34,20 +33,18 @@ function BranchSummaryCard({ title, helper }) {
 
 export default function ReportsPage() {
   return (
-    <AppShell>
-      <div className="space-y-6">
-        <StatsGrid items={reportStats} />
+    <div className="space-y-6">
+      <StatsGrid items={reportStats} />
 
-        <section className="grid gap-5 lg:grid-cols-2">
-          {branchStats.map((branch) => (
-            <BranchSummaryCard key={branch.title} title={branch.title} helper={branch.helper} />
-          ))}
-        </section>
+      <section className="grid gap-5 lg:grid-cols-2">
+        {branchStats.map((branch) => (
+          <BranchSummaryCard key={branch.title} title={branch.title} helper={branch.helper} />
+        ))}
+      </section>
 
-        <SectionCard title="مقارنة الفروع - ديسمبر 2025" className="min-h-[320px]">
-          <LineChart data={branchComparison} legend={{ yellow: "نادي النساء", green: "نادي الرجال" }} />
-        </SectionCard>
-      </div>
-    </AppShell>
+      <SectionCard title="مقارنة الفروع - ديسمبر 2025" className="min-h-[320px]">
+        <LineChart data={branchComparison} legend={{ yellow: "نادي النساء", green: "نادي الرجال" }} />
+      </SectionCard>
+    </div>
   );
 }

@@ -1,5 +1,6 @@
 import { Tajawal } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
@@ -15,8 +16,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className={`${tajawal.variable} antialiased`}>{children}</body>
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
+      <body className={`${tajawal.variable} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
