@@ -18,7 +18,8 @@ function InfoChip({ icon: Icon, children }) {
 
 export default function Navbar() {
   const pathname = usePathname();
-  const meta = pageMeta[pathname] || pageMeta["/accounting"];
+  const meta =
+    pageMeta[pathname] || (pathname.startsWith("/management") ? null : pageMeta["/accounting"]);
   const isReports = pathname.startsWith("/reports");
 
   const [currentTime, setCurrentTime] = useState("");
@@ -81,7 +82,7 @@ export default function Navbar() {
               </InfoChip>
             </div>
           )}
-          <Breadcrumb title={meta.title} subtitle={meta.subtitle} />
+          {meta && <Breadcrumb title={meta.title} subtitle={meta.subtitle} />}
         </div>
       </div>
     </div>

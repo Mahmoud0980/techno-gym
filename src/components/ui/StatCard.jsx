@@ -43,20 +43,20 @@ export default function StatCard({
   const styles = toneMap[tone] || toneMap.yellow;
 
   return (
-    <article className="card-shell min-h-32 overflow-hidden rounded-2xl p-4">
+    <article className="card-shell min-h-32 overflow-hidden rounded-2xl p-4" dir="rtl">
       <div className="flex items-center justify-between gap-3">
-        <div
-          className={`grid size-11 place-items-center rounded-full ${styles.icon}`}
-        >
-          <GridIcon className="size-5" />
-        </div>
-        <div className="min-w-0 text-end">
+        <div className="min-w-0 text-right">
           <h3 className="truncate text-sm font-medium text-app-text">
             {title}
           </h3>
           {helper && compact && (
             <p className="mt-1 text-xs text-app-muted">{helper}</p>
           )}
+        </div>
+        <div
+          className={`grid size-11 shrink-0 place-items-center rounded-full ${styles.icon}`}
+        >
+          <GridIcon className="size-5" />
         </div>
       </div>
 
@@ -76,7 +76,7 @@ export default function StatCard({
           className={`mt-2 flex items-end justify-between ${tone === "yellow" ? "text-app-yellow" : tone === "green" ? "text-app-green" : tone === "purple" ? "text-app-purple" : "text-app-blue"}`}
         >
           <MiniSpark tone={tone} />
-          <div className="text-end text-[11px] text-white">
+          <div className="text-right text-[11px] text-white">
             {change && (
               <div
                 className={`flex items-center justify-end gap-1 text-sm font-medium ${negative ? "text-app-red" : "text-app-green-2"}`}

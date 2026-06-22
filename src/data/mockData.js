@@ -21,7 +21,8 @@ export const systemCards = [
   {
     title: "نظام المحاسبة",
     href: "/accounting",
-    description: "لوحة مالية كاملة للإيرادات، المصاريف، الرواتب، الصندوق، والديون.",
+    description:
+      "لوحة مالية كاملة للإيرادات، المصاريف، الرواتب، الصندوق، والديون.",
     badge: "جاهز",
     stats: ["12 صفحة", "Mock Data", "RTL"],
   },
@@ -141,53 +142,185 @@ export const pageMeta = {
 };
 
 export const overviewStats = [
-  { title: "إيرادات اليوم", value: "24", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "مصاريف اليوم", value: "24", change: "+8%", helper: "عن أمس", tone: "green" },
-  { title: "صافي الربح", value: "24", change: "+8%", helper: "عن أمس", tone: "purple", negative: true },
-  { title: "رصيد الصندوق", value: "24", change: "+8%", helper: "عن أمس", tone: "blue" },
-  { title: "ديون مستحقة", value: "24", change: "+8%", helper: "عن أمس", tone: "blue" },
+  {
+    title: "إيرادات اليوم",
+    value: "24",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "مصاريف اليوم",
+    value: "24",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "green",
+  },
+  {
+    title: "صافي الربح",
+    value: "24",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "purple",
+    negative: true,
+  },
+  {
+    title: "رصيد الصندوق",
+    value: "24",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "blue",
+  },
+  {
+    title: "ديون مستحقة",
+    value: "24",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "blue",
+  },
 ];
 
 export const revenueStats = [
-  { title: "إيرادات الاشتراكات", value: "23456$", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "إيرادات إضافية", value: "34566$", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "عروض ترويجية", value: "456$", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "تأجير الصالة", value: "45767$", change: "+8%", helper: "عن أمس", tone: "yellow" },
+  {
+    title: "إيرادات الاشتراكات",
+    value: "23456$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "إيرادات إضافية",
+    value: "34566$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "عروض ترويجية",
+    value: "456$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "تأجير الصالة",
+    value: "45767$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
 ];
 
 export const expenseStats = [
-  { title: "إيرادات الاشتراكات", value: "23456$", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "إيرادات إضافية ثابتة", value: "34566$", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "عروض ترويجية", value: "456$", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "تأجير الصالة", value: "45767$", change: "+8%", helper: "عن أمس", tone: "yellow" },
+  {
+    title: "إيرادات الاشتراكات",
+    value: "23456$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "إيرادات إضافية ثابتة",
+    value: "34566$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "عروض ترويجية",
+    value: "456$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "تأجير الصالة",
+    value: "45767$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
 ];
 
 export const cashboxStats = [
-  { title: "الرصيد الافتتاحي", value: "23456$", helper: "08:30 صباحاً", tone: "yellow" },
-  { title: "إجمالي المقبوضات", value: "34566$", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "إجمالي المقبوضات", value: "456$", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "الرصيد الحالي", value: "45767$", helper: "آخر تحديث 08:45", tone: "yellow" },
+  {
+    title: "الرصيد الافتتاحي",
+    value: "23456$",
+    helper: "08:30 صباحاً",
+    tone: "yellow",
+  },
+  {
+    title: "إجمالي المقبوضات",
+    value: "34566$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "إجمالي المقبوضات",
+    value: "456$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "الرصيد الحالي",
+    value: "45767$",
+    helper: "آخر تحديث 08:45",
+    tone: "yellow",
+  },
 ];
 
 export const subscriptionStats = [
-  { title: "إجمالي المحصل", value: "34566$", change: "+8%", helper: "عن أمس", tone: "yellow" },
+  {
+    title: "إجمالي المحصل",
+    value: "34566$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
   { title: "المتبقي", value: "34566$", helper: "14 عضو", tone: "yellow" },
-  { title: "اشتراكات", value: "456$", change: "+8%", helper: "عن أمس", tone: "yellow", negative: true },
+  {
+    title: "اشتراكات",
+    value: "456$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+    negative: true,
+  },
   { title: "المتأخر", value: "34566$", helper: "2 ملفات", tone: "yellow" },
 ];
 
 export const trainersSalaryStats = [
-  { title: "إجمالي الرواتب", value: "34566$", change: "+8%", helper: "عن أمس", tone: "yellow" },
+  {
+    title: "إجمالي الرواتب",
+    value: "34566$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
   { title: "مدربون راتب ثابت", value: "14", tone: "yellow" },
   { title: "مدربون بالنسبة", value: "34", tone: "yellow" },
   { title: "إجمالي المشتركين", value: "43", tone: "yellow" },
 ];
 
 export const employeesSalaryStats = [
-  { title: "إجمالي رواتب الموظفين", value: "34566$", change: "+8%", helper: "عن أمس", tone: "yellow" },
+  {
+    title: "إجمالي رواتب الموظفين",
+    value: "34566$",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
   { title: "عدد الموظفين", value: "14", tone: "yellow" },
   { title: "ساعات إضافي", value: "34", tone: "yellow" },
-  { title: "مكافآت", value: "34", change: "+8%", helper: "عن أمس", tone: "yellow" },
+  {
+    title: "مكافآت",
+    value: "34",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
 ];
 
 export const debtStats = [
@@ -199,13 +332,37 @@ export const debtStats = [
 
 export const reportStats = [
   { title: "إجمالي الإيرادات", value: "14", tone: "yellow" },
-  { title: "متوسط فترة التحصيل", value: "22 يوم", change: "+8%", helper: "عن أمس", tone: "yellow" },
-  { title: "نسبة التحصيل", value: "87%", change: "+8%", helper: "عن أمس", tone: "yellow" },
+  {
+    title: "متوسط فترة التحصيل",
+    value: "22 يوم",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
+  {
+    title: "نسبة التحصيل",
+    value: "87%",
+    change: "+8%",
+    helper: "عن أمس",
+    tone: "yellow",
+  },
 ];
 
 export const branchStats = [
-  { title: "نادي الرجال", value: "", helper: "الفرع الرئيسي - الموكامبو", tone: "yellow", compact: true },
-  { title: "نادي النساء", value: "", helper: "الفرع الرئيسي - الفرقان", tone: "yellow", compact: true },
+  {
+    title: "نادي الرجال",
+    value: "",
+    helper: "الفرع الرئيسي - الموكامبو",
+    tone: "yellow",
+    compact: true,
+  },
+  {
+    title: "نادي النساء",
+    value: "",
+    helper: "الفرع الرئيسي - الفرقان",
+    tone: "yellow",
+    compact: true,
+  },
 ];
 
 export const monthlyProfit = [
@@ -240,10 +397,34 @@ export const upcomingPayments = [
 ];
 
 export const recentTransactions = [
-  { title: "فاتورة كهرباء", description: "مصاريف ثابتة", amount: "123$", time: "منذ 5 د", type: "out" },
-  { title: "محمد الأسعد", description: "اشتراك VIP سنوي", amount: "123$", time: "منذ 5 د", type: "in" },
-  { title: "صيانة أجهزة", description: "مصاريف متغيرة", amount: "123$", time: "منذ 5 د", type: "out" },
-  { title: "محمد الأسعد", description: "اشتراك VIP سنوي", amount: "123$", time: "منذ 5 د", type: "in" },
+  {
+    title: "فاتورة كهرباء",
+    description: "مصاريف ثابتة",
+    amount: "123$",
+    time: "منذ 5 د",
+    type: "out",
+  },
+  {
+    title: "محمد الأسعد",
+    description: "اشتراك VIP سنوي",
+    amount: "123$",
+    time: "منذ 5 د",
+    type: "in",
+  },
+  {
+    title: "صيانة أجهزة",
+    description: "مصاريف متغيرة",
+    amount: "123$",
+    time: "منذ 5 د",
+    type: "out",
+  },
+  {
+    title: "محمد الأسعد",
+    description: "اشتراك VIP سنوي",
+    amount: "123$",
+    time: "منذ 5 د",
+    type: "in",
+  },
 ];
 
 export const salarySummary = [
@@ -263,9 +444,33 @@ export const revenueColumns = [
 ];
 
 export const revenues = [
-  { id: "#1", member: "محمد الأسعد", date: "12/34/2026", method: "كاش", amount: "123$", type: "سنوي VIP", status: "مدفوع" },
-  { id: "#2", member: "أحمد شحادة", date: "12/34/2026", method: "كاش", amount: "123$", type: "شهري", status: "معلق" },
-  { id: "#3", member: "أحمد الأسعد", date: "12/34/2026", method: "كاش", amount: "123$", type: "حصصي", status: "متأخر" },
+  {
+    id: "#1",
+    member: "محمد الأسعد",
+    date: "12/34/2026",
+    method: "كاش",
+    amount: "123$",
+    type: "سنوي VIP",
+    status: "مدفوع",
+  },
+  {
+    id: "#2",
+    member: "أحمد شحادة",
+    date: "12/34/2026",
+    method: "كاش",
+    amount: "123$",
+    type: "شهري",
+    status: "معلق",
+  },
+  {
+    id: "#3",
+    member: "أحمد الأسعد",
+    date: "12/34/2026",
+    method: "كاش",
+    amount: "123$",
+    type: "حصصي",
+    status: "متأخر",
+  },
 ];
 
 export const additionalRevenueColumns = [
@@ -278,9 +483,30 @@ export const additionalRevenueColumns = [
 ];
 
 export const additionalRevenues = [
-  { id: "#1", status: "مدفوع", date: "12/34/2026", method: "كاش", amount: "123$", source: "مبيعات المكملات" },
-  { id: "#2", status: "معلق", date: "12/34/2026", method: "كاش", amount: "123$", source: "البوفيه" },
-  { id: "#3", status: "متأخر", date: "12/34/2026", method: "كاش", amount: "123$", source: "تأجير الصالة" },
+  {
+    id: "#1",
+    status: "مدفوع",
+    date: "12/34/2026",
+    method: "كاش",
+    amount: "123$",
+    source: "مبيعات المكملات",
+  },
+  {
+    id: "#2",
+    status: "معلق",
+    date: "12/34/2026",
+    method: "كاش",
+    amount: "123$",
+    source: "البوفيه",
+  },
+  {
+    id: "#3",
+    status: "متأخر",
+    date: "12/34/2026",
+    method: "كاش",
+    amount: "123$",
+    source: "تأجير الصالة",
+  },
 ];
 
 export const expenseColumns = [
@@ -295,10 +521,46 @@ export const expenseColumns = [
 ];
 
 export const expenses = [
-  { id: "#1", item: "فاتورة كهرباء", category: "ثابت/كهرباء", resource: "شركة الكهرباء", method: "كاش", amount: "123$", date: "23/23/2026", status: "مدفوع" },
-  { id: "#2", item: "أحمد الأسعد", category: "تشغيلي", resource: "شهري", method: "كاش", amount: "123$", date: "12/34/2026", status: "معلق" },
-  { id: "#3", item: "أحمد الأسعد", category: "حصصي", resource: "حصصي", method: "كاش", amount: "123$", date: "12/34/2026", status: "متأخر" },
-  { id: "#4", item: "أحمد الأسعد", category: "حصصي", resource: "حصصي", method: "كاش", amount: "123$", date: "12/34/2026", status: "متأخر" },
+  {
+    id: "#1",
+    item: "فاتورة كهرباء",
+    category: "ثابت/كهرباء",
+    resource: "شركة الكهرباء",
+    method: "كاش",
+    amount: "123$",
+    date: "23/23/2026",
+    status: "مدفوع",
+  },
+  {
+    id: "#2",
+    item: "أحمد الأسعد",
+    category: "تشغيلي",
+    resource: "شهري",
+    method: "كاش",
+    amount: "123$",
+    date: "12/34/2026",
+    status: "معلق",
+  },
+  {
+    id: "#3",
+    item: "أحمد الأسعد",
+    category: "حصصي",
+    resource: "حصصي",
+    method: "كاش",
+    amount: "123$",
+    date: "12/34/2026",
+    status: "متأخر",
+  },
+  {
+    id: "#4",
+    item: "أحمد الأسعد",
+    category: "حصصي",
+    resource: "حصصي",
+    method: "كاش",
+    amount: "123$",
+    date: "12/34/2026",
+    status: "متأخر",
+  },
 ];
 
 export const cashboxColumns = [
@@ -312,10 +574,42 @@ export const cashboxColumns = [
 ];
 
 export const cashboxRows = [
-  { id: "#1", time: "08:00 صباحاً", type: "افتتاح الصندوق", income: "+ 5,000", outcome: "-----", balance: "5,000 sp", by: "محمد الأسعد" },
-  { id: "#2", time: "01:87 مساءً", type: "اشتراك نقدي", income: "+ 650", outcome: "-----", balance: "5,650 sp", by: "محمد الأسعد" },
-  { id: "#3", time: "08:00 صباحاً", type: "مبيعات بوفيه", income: "+ 320", outcome: "-----", balance: "5,970 sp", by: "محمد الأسعد" },
-  { id: "#4", time: "08:00 صباحاً", type: "مبيعات مكملات", income: "-----", outcome: "180-", balance: "5,790 SP", by: "محمد الأسعد" },
+  {
+    id: "#1",
+    time: "08:00 صباحاً",
+    type: "افتتاح الصندوق",
+    income: "+ 5,000",
+    outcome: "-----",
+    balance: "5,000 sp",
+    by: "محمد الأسعد",
+  },
+  {
+    id: "#2",
+    time: "01:87 مساءً",
+    type: "اشتراك نقدي",
+    income: "+ 650",
+    outcome: "-----",
+    balance: "5,650 sp",
+    by: "محمد الأسعد",
+  },
+  {
+    id: "#3",
+    time: "08:00 صباحاً",
+    type: "مبيعات بوفيه",
+    income: "+ 320",
+    outcome: "-----",
+    balance: "5,970 sp",
+    by: "محمد الأسعد",
+  },
+  {
+    id: "#4",
+    time: "08:00 صباحاً",
+    type: "مبيعات مكملات",
+    income: "-----",
+    outcome: "180-",
+    balance: "5,790 SP",
+    by: "محمد الأسعد",
+  },
 ];
 
 export const subscriptionColumns = [
@@ -330,10 +624,46 @@ export const subscriptionColumns = [
 ];
 
 export const subscriptions = [
-  { id: "#1", member: "محمد الأسعد", plan: "سنوي VIP", total: "2236 SP", paid: "5,000", remaining: "180", due: "12/3/2025", status: "مدفوع" },
-  { id: "#2", member: "محمد الأسعد", plan: "سنوي", total: "2236 SP", paid: "650", remaining: "180", due: "12/3/2025", status: "معلق" },
-  { id: "#3", member: "محمد الأسعد", plan: "شهري", total: "2236 SP", paid: "320", remaining: "180", due: "12/3/2025", status: "متأخر" },
-  { id: "#4", member: "محمد الأسعد", plan: "حصصي", total: "2236 SP", paid: "320", remaining: "180", due: "12/3/2025", status: "متأخر" },
+  {
+    id: "#1",
+    member: "محمد الأسعد",
+    plan: "سنوي VIP",
+    total: "2236 SP",
+    paid: "5,000",
+    remaining: "180",
+    due: "12/3/2025",
+    status: "مدفوع",
+  },
+  {
+    id: "#2",
+    member: "محمد الأسعد",
+    plan: "سنوي",
+    total: "2236 SP",
+    paid: "650",
+    remaining: "180",
+    due: "12/3/2025",
+    status: "معلق",
+  },
+  {
+    id: "#3",
+    member: "محمد الأسعد",
+    plan: "شهري",
+    total: "2236 SP",
+    paid: "320",
+    remaining: "180",
+    due: "12/3/2025",
+    status: "متأخر",
+  },
+  {
+    id: "#4",
+    member: "محمد الأسعد",
+    plan: "حصصي",
+    total: "2236 SP",
+    paid: "320",
+    remaining: "180",
+    due: "12/3/2025",
+    status: "متأخر",
+  },
 ];
 
 export const trainersSalaryColumns = [
@@ -348,10 +678,46 @@ export const trainersSalaryColumns = [
 ];
 
 export const trainersSalaries = [
-  { id: "#1", trainer: "محمد الأسعد", salaryType: "ثابت + صالة", base: "2236 SP", sessions: "-----", percent: "-----", net: "5,000 sp", status: "مدفوع" },
-  { id: "#2", trainer: "محمد الأسعد", salaryType: "نسبة - يوغا", base: "2236 SP", sessions: "60%", percent: "60%", net: "5,000 sp", status: "معلق" },
-  { id: "#3", trainer: "محمد الأسعد", salaryType: "ثابت - كروس فت", base: "2236 SP", sessions: "-----", percent: "-----", net: "5,000 sp", status: "قيد المراجعة" },
-  { id: "#4", trainer: "محمد الأسعد", salaryType: "نسبة - رقص", base: "2236 SP", sessions: "55%", percent: "55%", net: "5,000 sp", status: "متأخر" },
+  {
+    id: "#1",
+    trainer: "محمد الأسعد",
+    salaryType: "ثابت + صالة",
+    base: "2236 SP",
+    sessions: "-----",
+    percent: "-----",
+    net: "5,000 sp",
+    status: "مدفوع",
+  },
+  {
+    id: "#2",
+    trainer: "محمد الأسعد",
+    salaryType: "نسبة - يوغا",
+    base: "2236 SP",
+    sessions: "60%",
+    percent: "60%",
+    net: "5,000 sp",
+    status: "معلق",
+  },
+  {
+    id: "#3",
+    trainer: "محمد الأسعد",
+    salaryType: "ثابت - كروس فت",
+    base: "2236 SP",
+    sessions: "-----",
+    percent: "-----",
+    net: "5,000 sp",
+    status: "قيد المراجعة",
+  },
+  {
+    id: "#4",
+    trainer: "محمد الأسعد",
+    salaryType: "نسبة - رقص",
+    base: "2236 SP",
+    sessions: "55%",
+    percent: "55%",
+    net: "5,000 sp",
+    status: "متأخر",
+  },
 ];
 
 export const employeesSalaryColumns = [
@@ -367,10 +733,50 @@ export const employeesSalaryColumns = [
 ];
 
 export const employeesSalaries = [
-  { id: "#1", employee: "محمد الأسعد", job: "استقبال", attendance: "23", overtime: "3", bonus: "650+", discount: "500-", net: "5,000 sp", status: "مدفوع" },
-  { id: "#2", employee: "محمد الأسعد", job: "إدارة", attendance: "23", overtime: "5", bonus: "650+", discount: "500-", net: "5,000 sp", status: "معلق" },
-  { id: "#3", employee: "محمد الأسعد", job: "نظافة", attendance: "43", overtime: "6", bonus: "650+", discount: "---", net: "5,000 sp", status: "قيد المراجعة" },
-  { id: "#4", employee: "محمد الأسعد", job: "أمن", attendance: "54", overtime: "2", bonus: "650+", discount: "---", net: "5,000 sp", status: "متأخر" },
+  {
+    id: "#1",
+    employee: "محمد الأسعد",
+    job: "استقبال",
+    attendance: "23",
+    overtime: "3",
+    bonus: "650+",
+    discount: "500-",
+    net: "5,000 sp",
+    status: "مدفوع",
+  },
+  {
+    id: "#2",
+    employee: "محمد الأسعد",
+    job: "إدارة",
+    attendance: "23",
+    overtime: "5",
+    bonus: "650+",
+    discount: "500-",
+    net: "5,000 sp",
+    status: "معلق",
+  },
+  {
+    id: "#3",
+    employee: "محمد الأسعد",
+    job: "نظافة",
+    attendance: "43",
+    overtime: "6",
+    bonus: "650+",
+    discount: "---",
+    net: "5,000 sp",
+    status: "قيد المراجعة",
+  },
+  {
+    id: "#4",
+    employee: "محمد الأسعد",
+    job: "أمن",
+    attendance: "54",
+    overtime: "2",
+    bonus: "650+",
+    discount: "---",
+    net: "5,000 sp",
+    status: "متأخر",
+  },
 ];
 
 export const debtColumns = [
@@ -383,10 +789,38 @@ export const debtColumns = [
 ];
 
 export const debts = [
-  { id: "#1", party: "شركة الفجر / إعلانات", amount: "5,000 sp", age: "24 يوم", contact: "0987654422", status: "مدفوع" },
-  { id: "#2", party: "ريم الحربي / عضوية", amount: "5,000 sp", age: "24 يوم", contact: "0987654422", status: "معلق" },
-  { id: "#3", party: "مدرسة الرواد - تأجير", amount: "5,000 sp", age: "24 يوم", contact: "0987654422", status: "قيد المراجعة" },
-  { id: "#4", party: "بدر القرني - أقساط", amount: "5,000 sp", age: "24 يوم", contact: "0987654422", status: "متأخر" },
+  {
+    id: "#1",
+    party: "شركة الفجر / إعلانات",
+    amount: "5,000 sp",
+    age: "24 يوم",
+    contact: "0987654422",
+    status: "مدفوع",
+  },
+  {
+    id: "#2",
+    party: "ريم الحربي / عضوية",
+    amount: "5,000 sp",
+    age: "24 يوم",
+    contact: "0987654422",
+    status: "معلق",
+  },
+  {
+    id: "#3",
+    party: "مدرسة الرواد - تأجير",
+    amount: "5,000 sp",
+    age: "24 يوم",
+    contact: "0987654422",
+    status: "قيد المراجعة",
+  },
+  {
+    id: "#4",
+    party: "بدر القرني - أقساط",
+    amount: "5,000 sp",
+    age: "24 يوم",
+    contact: "0987654422",
+    status: "متأخر",
+  },
 ];
 
 export const branchMiniCards = [

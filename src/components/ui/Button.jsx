@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const toneClass = {
   primary: "app-button-primary hover:bg-app-yellow/90",
@@ -8,12 +9,38 @@ const toneClass = {
   danger: "bg-app-red/15 text-app-red hover:bg-app-red/20",
 };
 
-export default function Button({ href, children, icon, className = "", tone = "primary", ...props }) {
-  const classes = `inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium transition ${toneClass[tone] || toneClass.primary} ${className}`;
+export default function Button({
+  href,
+  children,
+  icon,
+  className = "",
+  tone = "primary",
+  loading = false,
+  loadingLabel = "جاري التحميل",
+  disabled,
+  ...props
+}) {
+  const classes = `inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-70 ${toneClass[tone] || toneClass.primary} ${className}`;
+  const content = loading ? (
+    <LoadingSpinner className="size-5" label={loadingLabel} />
+  ) : (
+    <>
+      {icon}
+      {children}
+    </>
+  );
 
   if (href) {
-    return <Link href={href} className={classes} {...props}>{icon}{children}</Link>;
+    return (
+      <Link href={href} className={classes} aria-busy={loading} {...props}>
+        {content}
+      </Link>
+    );
   }
 
-  return <button className={classes} {...props}>{icon}{children}</button>;
+  return (
+    <button className={classes} disabled={disabled || loading} aria-busy={loading} {...props}>
+      {content}
+    </button>
+  );
 }

@@ -11,16 +11,18 @@ export default function LoginPage() {
         >
           العودة للصفحة الرئيسية
         </Link>
+
         <div className="grid items-center gap-8 lg:grid-cols-[440px_1fr]">
           <LoginForm />
-          <section className="hidden text-staret mr-24 lg:block">
+
+          <section className="hidden text-start lg:mr-24 lg:block">
             <p className="text-sm text-app-yellow">TechnoGYM</p>
             <h2 className="mt-4 max-w-xl text-5xl font-semibold leading-tight text-white">
-              نظام موحد للمحاسبة والتقارير داخل النادي الرياضي
+              نظام موحد لإدارة النادي والاشتراكات والتقارير
             </h2>
             <p className="mt-5 max-w-lg text-app-muted-light">
-              الواجهة مبنية بأسلوب مستوحى من تصميم Figma، مع ألوان ثابتة ومكونات
-              قابلة لإعادة الاستخدام داخل NextJS.
+              لوحة تشغيلية مبنية بمكونات قابلة لإعادة الاستخدام وربط مباشر مع
+              واجهات النظام الخلفية.
             </p>
           </section>
         </div>

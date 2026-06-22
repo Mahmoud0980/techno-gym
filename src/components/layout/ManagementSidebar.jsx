@@ -9,6 +9,7 @@ const navItems = [
   { title: "إدارة النادي", href: "/management" },
   { title: "الأعضاء", href: "/management/members" },
   { title: "الاشتراكات", href: "/management/subscriptions" },
+  { title: "خطط الاشتراك", href: "/management/subscription-plans" },
   { title: "الفروع", href: "/management/branches" },
   { title: "الحضور والغياب", href: "/management/attendance" },
 ];
