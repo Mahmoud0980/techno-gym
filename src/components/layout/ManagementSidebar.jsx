@@ -6,11 +6,13 @@ import { ChevronLeft } from "@/components/icons/Icons";
 import Image from "next/image";
 
 const navItems = [
-  { title: "إدارة النادي", href: "/management" },
+  { title: "إدارة النادي", href: "/management/clubs" },
   { title: "الأعضاء", href: "/management/members" },
   { title: "الاشتراكات", href: "/management/subscriptions" },
   { title: "خطط الاشتراك", href: "/management/subscription-plans" },
   { title: "الفروع", href: "/management/branches" },
+  { title: "المدربين", href: "/management/coaches" },
+  { title: "الأنشطة الرياضية", href: "/management/activities" },
   { title: "الحضور والغياب", href: "/management/attendance" },
 ];
 

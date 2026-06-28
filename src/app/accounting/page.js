@@ -64,22 +64,22 @@ export default function AccountingDashboardPage() {
         ))}
       </section>
 
-      <section className="grid gap-5 xl:grid-cols-[339px_295px_minmax(0,1fr)]">
-        <SectionCard title="الربح الشهري" className="h-[206px]">
+      <section className="grid gap-5 xl:grid-cols-[343px_295px_339px]">
+        <SectionCard title="الربح الشهري" className="h-[206px] xl:order-2">
           <BarChart data={monthlyProfit} />
         </SectionCard>
 
         <SectionCard
           title="الإيرادات مقابل المصاريف"
           action="آخر 7 أيام"
-          className="h-[208px]"
+          className="h-[208px] xl:order-1"
         >
           <LineChart data={comparisonChart} />
         </SectionCard>
         <SectionCard
           title="المدفوعات القادمة"
           action="عرض الكل"
-          className="h-[206px]"
+          className="h-[206px] xl:order-3"
           contentClassName="space-y-3 px-5 pb-5"
         >
           {upcomingPayments.map((item, index) => (
@@ -88,7 +88,7 @@ export default function AccountingDashboardPage() {
         </SectionCard>
       </section>
 
-      <section className="grid gap-5 xl:grid-cols-[339px_minmax(0,1fr)]">
+      <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_339px]">
         <SectionCard
           title="آخر المعاملات"
           subtitle="أحدث الحركات المالية"

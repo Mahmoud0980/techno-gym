@@ -6,3 +6,4 @@ export { UploadBox } from "./UploadBox";
 export { SaveButton } from "./SaveButton";
 export { SummaryPanel } from "./SummaryPanel";
 export { TransactionTypeSelector } from "./TransactionTypeSelector";
+export { CheckboxField } from "./CheckboxField";

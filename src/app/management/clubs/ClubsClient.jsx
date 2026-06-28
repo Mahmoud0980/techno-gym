@@ -9,44 +9,17 @@ import RowActions from "@/components/ui/RowActions";
 import SkeletonPage from "@/components/ui/Skeleton";
 import StatsGrid from "@/components/ui/StatsGrid";
 import { PlusIcon, SearchIcon } from "@/components/icons/Icons";
+import { CheckboxField } from "@/components/forms/CheckboxField";
 import ConfirmDialog from "@/components/ui/ConfirmDialog";
-import { useSubscriptionPlans } from "./useSubscriptionPlans";
+import { useClubs } from "./useClubs";
 
-const TABLE_GRID_COLUMNS =
-  "minmax(180px,1.25fr) 78px 82px 94px 90px 112px 86px 88px";
+const TABLE_GRID_COLUMNS = "80px minmax(180px,1.5fr) 140px 140px 120px";
 
 const initialForm = {
   name: "",
-  duration_in_days: "30",
-  price: "",
+  logo_url: "",
+  is_active: true,
 };
-
-function parseAmount(value) {
-  const number = Number.parseFloat(value || 0);
-  return Number.isFinite(number) ? number : 0;
-}
-
-function formatMoney(value) {
-  return `$${parseAmount(value).toLocaleString("en-US", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  })}`;
-}
-
-function planName(plan) {
-  return plan?.name?.ar || plan?.name?.en || "-";
-}
-
-function planTypeLabel(type) {
-  const labels = {
-    monthly: "شهري",
-    weekly: "أسبوعي",
-    yearly: "سنوي",
-    custom: "مخصص",
-  };
-
-  return labels[type] || type || "-";
-}
 
 function StatusBadge({ active }) {
   return (
@@ -55,18 +28,56 @@ function StatusBadge({ active }) {
         active ? "status-success" : "status-danger"
       }`}
     >
-      {active ? "فعالة" : "متوقفة"}
+      {active ? "نشط" : "غير نشط"}
     </span>
   );
+}
+
+function ClubLogo({ src, name, className = "size-10" }) {
+  const [error, setError] = useState(false);
+
+  if (!src || error) {
+    const initial = name ? name.charAt(0).toUpperCase() : "?";
+    return (
+      <div
+        className={`flex items-center justify-center rounded-lg bg-app-card-hover border border-app-line font-bold text-app-yellow ${className}`}
+      >
+        {initial}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={name}
+      onError={() => setError(true)}
+      className={`rounded-lg object-cover border border-app-line bg-app-card-hover ${className}`}
+    />
+  );
+}
+
+function formatDate(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (isNaN(date.getTime())) return "-";
+
+  return new Intl.DateTimeFormat("ar", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(date);
 }
 
 function DetailItem({ label, value, tone = "default" }) {
   const toneClass =
     tone === "green"
       ? "text-app-green"
-      : tone === "yellow"
-        ? "text-app-yellow"
-        : "text-app-text";
+      : tone === "red"
+        ? "text-app-red"
+        : tone === "yellow"
+          ? "text-app-yellow"
+          : "text-app-text";
 
   return (
     <div className="rounded-lg border border-app-line bg-app-card-soft/70 p-3 text-right">
@@ -78,23 +89,27 @@ function DetailItem({ label, value, tone = "default" }) {
   );
 }
 
-function PlanDetails({ plan, isLoading, error }) {
+function ClubDetails({ club, isLoading, error }) {
   if (isLoading) {
-    return <SkeletonPage blocks={[{ type: "details", sections: 2, itemsPerSection: 4 }]} />;
+    return (
+      <SkeletonPage
+        blocks={[{ type: "details", sections: 2, itemsPerSection: 3 }]}
+      />
+    );
   }
 
   if (error) {
     return (
       <div className="rounded-xl border border-app-red/30 bg-app-red/10 p-5 text-right text-sm text-app-red">
-        تعذر تحميل تفاصيل الخطة.
+        تعذر تحميل تفاصيل النادي.
       </div>
     );
   }
 
-  if (!plan) {
+  if (!club) {
     return (
       <div className="rounded-xl border border-app-line bg-app-card-soft/60 p-6 text-center text-sm text-app-muted-light">
-        لا توجد تفاصيل لهذه الخطة.
+        لا توجد تفاصيل لهذا النادي.
       </div>
     );
   }
@@ -102,32 +117,33 @@ function PlanDetails({ plan, isLoading, error }) {
   return (
     <div className="space-y-6">
       <div className="rounded-xl border border-app-line bg-app-card-soft/70 p-4 text-right">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
-            <h3 className="truncate text-lg font-medium text-app-text">
-              {planName(plan)}
+            <h3 className="text-lg font-medium text-app-text">
+              {club.name || "-"}
             </h3>
             <p className="mt-1 text-xs text-app-muted-light">
-              {plan.name?.en || "Subscription plan"}
+              معرف النادي: #{club.id}
             </p>
           </div>
-          <StatusBadge active={plan.is_active} />
+          <ClubLogo src={club.logo_url} name={club.name} className="size-16" />
         </div>
       </div>
 
       <section className="grid gap-3 sm:grid-cols-2">
-        <DetailItem label="نوع الخطة" value={planTypeLabel(plan.type)} />
-        <DetailItem label="السعر" value={formatMoney(plan.base_price)} tone="yellow" />
-        <DetailItem label="المدة" value={`${plan.duration_days || 0} يوم`} />
-        <DetailItem label="عدد الجلسات" value={plan.session_count} />
-        <DetailItem label="عدد مرات التجميد" value={plan.max_freeze_count} />
-        <DetailItem label="أيام التجميد" value={plan.max_freeze_days} />
+        <DetailItem
+          label="حالة النشاط"
+          value={club.is_active ? "نشط" : "غير نشط"}
+          tone={club.is_active ? "green" : "red"}
+        />
+        <DetailItem label="تاريخ الإنشاء" value={formatDate(club.created_at)} />
+        <DetailItem label="تاريخ التحديث" value={formatDate(club.updated_at)} />
       </section>
     </div>
   );
 }
 
-function PlanForm({
+function ClubForm({
   mode,
   initialValues = initialForm,
   onSubmit,
@@ -145,49 +161,41 @@ function PlanForm({
     event.preventDefault();
     onSubmit({
       name: form.name.trim(),
-      duration_in_days: Number(form.duration_in_days),
-      price: Number(form.price),
+      logo_url: form.logo_url?.trim() || null,
+      is_active: Boolean(form.is_active),
     });
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <label className="block text-right text-sm text-app-muted-light">
-        اسم الخطة
+        اسم النادي
         <input
           value={form.name}
           onChange={(event) => updateField("name", event.target.value)}
           className="app-input mt-2 h-11 w-full px-3 text-right outline-none focus:border-app-yellow/70"
-          placeholder="الاشتراك الفضي"
+          placeholder="تكنوجيم"
           required
         />
       </label>
 
+      {/* 
       <label className="block text-right text-sm text-app-muted-light">
-        المدة بالأيام
+        رابط الشعار (اختياري)
         <input
-          value={form.duration_in_days}
-          onChange={(event) => updateField("duration_in_days", event.target.value)}
-          className="app-input mt-2 h-11 w-full px-3 text-right outline-none focus:border-app-yellow/70"
-          type="number"
-          min="1"
-          required
+          value={form.logo_url || ""}
+          onChange={(event) => updateField("logo_url", event.target.value)}
+          className="app-input mt-2 h-11 w-full px-3 text-left outline-none focus:border-app-yellow/70"
+          placeholder="https://example.com/logo.png"
+          dir="ltr"
         />
-      </label>
+      </label> */}
 
-      <label className="block text-right text-sm text-app-muted-light">
-        السعر
-        <input
-          value={form.price}
-          onChange={(event) => updateField("price", event.target.value)}
-          className="app-input mt-2 h-11 w-full px-3 text-right outline-none focus:border-app-yellow/70"
-          type="number"
-          min="0"
-          step="0.01"
-          placeholder="350"
-          required
-        />
-      </label>
+      <CheckboxField
+        label="تفعيل النادي"
+        checked={form.is_active}
+        onChange={(event) => updateField("is_active", event.target.checked)}
+      />
 
       {errorMessage && (
         <p className="rounded-xl border border-app-red/30 bg-app-red/10 p-3 text-center text-xs text-app-red">
@@ -196,36 +204,40 @@ function PlanForm({
       )}
 
       <div className="flex gap-3 pt-2">
-        <Button type="button" tone="outline" className="h-11 flex-1" onClick={onCancel}>
+        <Button
+          type="button"
+          tone="outline"
+          className="h-11 flex-1"
+          onClick={onCancel}
+        >
           إلغاء
         </Button>
         <Button type="submit" className="h-11 flex-1" loading={isLoading}>
-          {mode === "edit" ? "حفظ التعديل" : "إنشاء الخطة"}
+          {mode === "edit" ? "حفظ التعديل" : "إنشاء النادي"}
         </Button>
       </div>
     </form>
   );
 }
 
-export default function SubscriptionPlansClient() {
+export default function ClubsClient() {
   const {
     search,
     setSearch,
     drawerMode,
     setDrawerMode,
-    selectedPlanId,
-    setSelectedPlanId,
+    setSelectedClubId,
+    selectedClubId,
     formError,
     setFormError,
     isLoading,
     error,
     refetch,
-    filteredPlans,
+    filteredClubs,
     stats,
-    selectedPlan,
-    detailsPlan,
+    selectedClub,
+    detailsClub,
     isFetchingDetails,
-    isLoadingDetails,
     detailsError,
     isCreating,
     isUpdating,
@@ -239,56 +251,35 @@ export default function SubscriptionPlansClient() {
     itemToDelete,
     closeDeleteConfirm,
     confirmDelete,
-  } = useSubscriptionPlans();
+  } = useClubs();
 
   const columns = useMemo(
     () => [
       {
-        key: "name",
-        label: "الخطة",
+        key: "logo_url",
+        label: "الشعار",
         align: "center",
-        render: (_, plan) => (
-          <div className="min-w-0 text-center">
-            <p className="truncate text-sm font-medium text-app-text">
-              {planName(plan)}
-            </p>
-            <p className="mt-1 truncate text-[11px] text-app-muted-light">
-              {plan.name?.en || "-"}
-            </p>
+        render: (value, club) => (
+          <div className="flex justify-center">
+            <ClubLogo src={value} name={club.name} className="size-10" />
           </div>
         ),
       },
       {
-        key: "type",
-        label: "النوع",
-        align: "center",
-        render: (value) => planTypeLabel(value),
-      },
-      {
-        key: "duration_days",
-        label: "المدة",
-        align: "center",
-        render: (value) => `${value || 0} يوم`,
-      },
-      {
-        key: "session_count",
-        label: "الجلسات",
-        align: "center",
-        render: (value) => `${value || 0} جلسة`,
-      },
-      {
-        key: "base_price",
-        label: "السعر",
+        key: "name",
+        label: "الاسم",
         align: "center",
         render: (value) => (
-          <span className="font-medium text-app-yellow">{formatMoney(value)}</span>
+          <span className="text-sm font-medium text-app-text">
+            {value || "-"}
+          </span>
         ),
       },
       {
-        key: "freeze",
-        label: "التجميد",
+        key: "created_at",
+        label: "تاريخ الإنشاء",
         align: "center",
-        render: (_, plan) => `${plan.max_freeze_count || 0} مرة / ${plan.max_freeze_days || 0} يوم`,
+        render: (value) => formatDate(value),
       },
       {
         key: "is_active",
@@ -300,28 +291,28 @@ export default function SubscriptionPlansClient() {
         key: "actions",
         label: "الإجراءات",
         align: "center",
-        render: (_, plan) => (
+        render: (_, club) => (
           <RowActions
             disabled={isDeleting}
             onEdit={() => {
               setFormError("");
-              setSelectedPlanId(plan.id);
+              setSelectedClubId(club.id);
               setDrawerMode("edit");
             }}
-            onDelete={() => handleDelete(plan)}
+            onDelete={() => handleDelete(club)}
           />
         ),
       },
     ],
-    [isDeleting, handleDelete, setFormError, setSelectedPlanId, setDrawerMode],
+    [isDeleting, handleDelete, setFormError, setSelectedClubId, setDrawerMode],
   );
 
   return (
     <div className="space-y-6" dir="rtl">
       <PageHeader
-        eyebrow="إدارة النادي"
-        title="خطط الاشتراك"
-        subtitle="إنشاء وتعديل خطط الاشتراك وربطها مع مدة الخطة والسعر وعدد الجلسات."
+        eyebrow="إدارة النظام"
+        title="إدارة النوادي"
+        subtitle="عرض النوادي المسجلة في النظام، وتعديل بياناتها أو إضافة نوادٍ جديدة."
         action={
           <Button
             icon={<PlusIcon className="size-4" />}
@@ -330,7 +321,7 @@ export default function SubscriptionPlansClient() {
               setDrawerMode("create");
             }}
           >
-            إنشاء خطة
+            إضافة نادٍ
           </Button>
         }
       />
@@ -338,10 +329,10 @@ export default function SubscriptionPlansClient() {
       <StatsGrid items={stats} />
 
       <DataTable
-        title="قائمة خطط الاشتراك"
+        title="قائمة النوادي"
         columns={columns}
-        rows={filteredPlans}
-        minWidth="850px"
+        rows={filteredClubs}
+        minWidth="750px"
         tableColumns={TABLE_GRID_COLUMNS}
         showAdd={false}
         showSearch={false}
@@ -351,23 +342,27 @@ export default function SubscriptionPlansClient() {
         emptyMessage={
           error ? (
             <div className="space-y-3 text-center">
-              <p className="text-app-red">تعذر تحميل خطط الاشتراك.</p>
-              <Button tone="outline" className="h-9 px-3 text-xs" onClick={refetch}>
+              <p className="text-app-red">تعذر تحميل بيانات النوادي.</p>
+              <Button
+                tone="outline"
+                className="h-9 px-3 text-xs"
+                onClick={refetch}
+              >
                 إعادة المحاولة
               </Button>
             </div>
           ) : (
-            "لا توجد خطط مطابقة للبحث الحالي."
+            "لا توجد نوادٍ مسجلة حالياً."
           )
         }
         rowClassName="gap-2 px-3 py-4"
         headerClassName="gap-2 px-3"
         totalPages={0}
-        onRowClick={(plan) => {
-          setSelectedPlanId(plan.id);
+        onRowClick={(club) => {
+          setSelectedClubId(club.id);
           setDrawerMode("details");
         }}
-        getRowKey={(plan) => plan.id}
+        getRowKey={(club) => club.id}
         toolbarActions={
           <label className="relative block min-w-72">
             <SearchIcon className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-app-muted-light" />
@@ -375,7 +370,7 @@ export default function SubscriptionPlansClient() {
               className="app-input h-10 w-full pr-9 pl-3 text-sm outline-none transition focus:border-app-yellow/70"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="بحث باسم الخطة أو السعر"
+              placeholder="البحث باسم النادي..."
               type="search"
             />
           </label>
@@ -384,7 +379,7 @@ export default function SubscriptionPlansClient() {
           <p className="text-sm text-app-muted-light">
             النتائج:{" "}
             <span className="font-medium text-app-text">
-              {filteredPlans.length.toLocaleString("ar")}
+              {filteredClubs.length.toLocaleString("ar")}
             </span>
           </p>
         }
@@ -393,10 +388,10 @@ export default function SubscriptionPlansClient() {
       <Drawer
         open={drawerMode === "create"}
         onClose={closeDrawer}
-        title="إنشاء خطة اشتراك"
-        subtitle="أدخل اسم الخطة والمدة والسعر"
+        title="إضافة نادٍ جديد"
+        subtitle="أدخل اسم النادي ورابط الشعار"
       >
-        <PlanForm
+        <ClubForm
           mode="create"
           onSubmit={handleCreate}
           onCancel={closeDrawer}
@@ -408,11 +403,11 @@ export default function SubscriptionPlansClient() {
       <Drawer
         open={drawerMode === "edit"}
         onClose={closeDrawer}
-        title="تعديل خطة الاشتراك"
-        subtitle={planName(selectedPlan)}
+        title="تعديل بيانات النادي"
+        subtitle={selectedClub?.name}
       >
-        <PlanForm
-          key={selectedPlanId || "edit"}
+        <ClubForm
+          key={selectedClubId || "edit"}
           mode="edit"
           initialValues={getEditInitialValues()}
           onSubmit={handleUpdate}
@@ -425,12 +420,12 @@ export default function SubscriptionPlansClient() {
       <Drawer
         open={drawerMode === "details"}
         onClose={closeDrawer}
-        title="تفاصيل خطة الاشتراك"
-        subtitle={planName(detailsPlan || selectedPlan)}
+        title="تفاصيل النادي"
+        subtitle={detailsClub?.name || selectedClub?.name}
       >
-        <PlanDetails
-          plan={detailsPlan || selectedPlan}
-          isLoading={isLoadingDetails || isFetchingDetails}
+        <ClubDetails
+          club={detailsClub || selectedClub}
+          isLoading={isFetchingDetails}
           error={detailsError}
         />
       </Drawer>
@@ -439,8 +434,8 @@ export default function SubscriptionPlansClient() {
         open={deleteConfirmOpen}
         onClose={closeDeleteConfirm}
         onConfirm={confirmDelete}
-        title="تأكيد حذف خطة الاشتراك"
-        message={`هل أنت متأكد من رغبتك في حذف خطة "${itemToDelete ? planName(itemToDelete) : ""}"؟ لا يمكن التراجع عن هذا الإجراء.`}
+        title="تأكيد حذف النادي"
+        message={`هل أنت متأكد من رغبتك في حذف نادي "${itemToDelete?.name}"؟ لا يمكن التراجع عن هذا الإجراء.`}
         isLoading={isDeleting}
       />
     </div>
